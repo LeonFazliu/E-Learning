@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/css/style.css">
+
+<%- include('partials/navbar') %>
+<h1>My Saved Courses</h1>
+
+<div class="courses-grid">
+    <% courses.forEach(course => { %>
+        <div class="course-card">
+            <img src="<%= course.imageUrl %>" alt="<%= course.name %>">
+            <h3><%= course.name %></h3>
+            <p><%= course.description %></p>
+            <a href="/courses/<%= course.id %>" class="btn-secondary">View Course</a>
+        </div>
+    <% }); %>
+</div>

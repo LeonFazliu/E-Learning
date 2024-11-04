@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/css/style.css">
+
+<%- include('partials/navbar') %>
+<section class="featured-courses">
+    <h2> Courses</h2>
+    <div class="courses-grid">
+      <% courses.forEach(course => { %>
+        <div class="course-card">
+          <img src="<%= course.imageUrl %>" alt="<%= course.name %>" class="course-image" />
+          <h3><%= course.name %></h3>
+          <p><%= course.description %></p>
+          <p>Instructor: <strong><%= course.instructor %></strong></p>
+          <p>Duration: <strong><%= course.duration %></strong></p>
+          <p>Rating: <strong><%= course.rating ? course.rating.toFixed(1) : 'N/A' %></strong></p>
+          <a href="/courses/<%= course.id %>" class="btn-secondary">Enroll Now</a>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+  
