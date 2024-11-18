@@ -7,7 +7,7 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
-const { authenticateToken } = require('./middleware/auth'); 
+const { authenticateToken,authenticateUser } = require('./middleware/auth'); 
 const adminRoutes = require('./routes/adminRoutes');
 const teacherRoutes = require('./routes/teacherRoutes'); 
 
@@ -26,12 +26,12 @@ app.use(cookieParser());
 
 // Routes
 app.use('/auth', authRoutes);
-app.use('/',authenticateToken, courseRoutes);
-app.get('/',authenticateToken, (req, res) => {
+app.use('/', authenticateUser,authenticateToken, courseRoutes);
+app.get('/',authenticateUser,authenticateToken ,(req, res) => {
     res.render('home'); // Render the index.ejs file
 });
-app.use('/admin', adminRoutes);
-app.use('/teacher', teacherRoutes); 
+app.use('/admin',authenticateUser,authenticateToken, adminRoutes);
+app.use('/teacher',authenticateUser,authenticateToken,teacherRoutes); 
 
 
 

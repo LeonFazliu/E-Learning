@@ -10,11 +10,8 @@
         
         <% if (user) { %>
             <% if (user.role === 'admin') { %>
-                <li><a href="/create-course" class="text-white hover:text-blue-300">Create Course</a></li>
-                <li><a href="/teacher/dashboard" class="text-white hover:text-blue-300">Teacher Dashboard</a></li>
                 <li><a href="/admin/dashboard" class="text-white hover:text-blue-300">Admin Dashboard</a></li>
             <% } else if (user.role === 'teacher') { %>
-                <li><a href="/create-course" class="text-white hover:text-blue-300">Create Course</a></li>
                 <li><a href="/teacher/dashboard" class="text-white hover:text-blue-300">Teacher Dashboard</a></li>
             <% } %>
             
