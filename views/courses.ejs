@@ -1,20 +1,25 @@
-<link rel="stylesheet" href="/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <%- include('partials/navbar') %>
-<section class="featured-courses">
-    <h2> Courses</h2>
-    <div class="courses-grid">
+<section class="py-8 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Courses</h2>
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <% courses.forEach(course => { %>
-        <div class="course-card">
-          <img src="<%= course.imageUrl %>" alt="<%= course.name %>" class="course-image" />
-          <h3><%= course.name %></h3>
-          <p><%= course.description %></p>
-          <p>Instructor: <strong><%= course.instructor %></strong></p>
-          <p>Duration: <strong><%= course.duration %></strong></p>
-          <p>Rating: <strong><%= course.rating ? course.rating.toFixed(1) : 'N/A' %></strong></p>
-          <a href="/courses/<%= course.id %>" class="btn-secondary">Enroll Now</a>
+        <div class="bg-white shadow rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+          <div class="relative h-48 w-full">
+            <img src="<%= course.imageUrl %>" alt="<%= course.name %>" class="absolute inset-0 w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-1"><%= course.name %></h3>
+            <p class="text-sm text-gray-600 mb-2 line-clamp-2"><%= course.description %></p>
+            <p class="text-sm text-gray-800 mb-1">Instructor: <strong><%= course.instructor %></strong></p>
+            <p class="text-sm text-gray-800 mb-1">Duration: <strong><%= course.duration %></strong></p>
+            <p class="text-sm text-gray-800 mb-3">Rating: <strong><%= course.rating ? course.rating.toFixed(1) : 'N/A' %></strong></p>
+            <a href="/courses/<%= course.id %>" class="inline-block bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition duration-200 text-sm">Enroll Now</a>
+          </div>
         </div>
       <% }); %>
     </div>
-  </section>
-  
+  </div>
+</section>
