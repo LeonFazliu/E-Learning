@@ -4,89 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Course: <%= course.name %></title>
-    <link rel="stylesheet" href="/path/to/your/style.css"> <!-- Include your styles -->
-    <style>
-        .edit-course-layout {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            text-align: center;
-            color: #343a40;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="edit-course-layout">
-        <h1>Edit Course: <%= course.name %></h1>
-        <form action="/teacher/course/<%= course.id %>/edit?_method=PUT" method="POST"> <!-- Use method override for PUT -->
-            <div>
-                <label for="name">Course Name</label>
-                <input type="text" id="name" name="name" value="<%= course.name %>" required>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('../partials/navbar') %>
+
+
+    <!-- Edit Course Form -->
+    <div class="max-w-lg mx-auto mt-10 p-8 bg-white rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Edit Course: <%= course.name %></h1>
+        <form action="/teacher/course/<%= course.id %>/edit?_method=PUT" method="POST">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-semibold mb-2">Course Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="<%= course.name %>" required>
             </div>
-            <div>
-                <label for="description">Description</label>
-                <textarea id="description" name="description" required><%= course.description %></textarea>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 font-semibold mb-2">Description</label>
+                <textarea id="description" name="description" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required><%= course.description %></textarea>
             </div>
-            <div>
-                <label for="duration">Duration</label>
-                <input type="text" id="duration" name="duration" value="<%= course.duration %>" required>
+            <div class="mb-4">
+                <label for="duration" class="block text-gray-700 font-semibold mb-2">Duration</label>
+                <input type="text" id="duration" name="duration" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="<%= course.duration %>" required>
             </div>
-            <div>
-                <label for="rating">Rating</label>
-                <input type="number" id="rating" name="rating" step="0.1" min="0" max="5" value="<%= course.rating %>">
+            <div class="mb-4">
+                <label for="rating" class="block text-gray-700 font-semibold mb-2">Rating</label>
+                <input type="number" id="rating" name="rating" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" step="0.1" min="0" max="5" value="<%= course.rating %>">
             </div>
-            <button type="submit">Update Course</button>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">Update Course</button>
         </form>
-        <a href="/teacher/dashboard">Back to Dashboard</a> <!-- Ensure this points to the correct dashboard -->
+        <a href="/teacher/dashboard" class="block text-center text-blue-500 mt-4 hover:underline">Back to Dashboard</a>
     </div>
 </body>
 </html>
