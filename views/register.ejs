@@ -6,45 +6,107 @@
   <title>Register | E-Learning Platform</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-sm w-full">
-    <div class="text-5xl text-center mb-4">📘</div>
-    <h2 class="text-2xl font-bold text-center mb-2">Create Your Account</h2>
-    <p class="text-gray-600 text-center mb-6">
-      Join our community of learners and educators. Expand your knowledge and skills today!
-    </p>
-    <form action="/auth/register" method="POST" class="space-y-4">
-      <input 
-        type="text" 
-        name="username" 
-        placeholder="Username" 
-        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required 
-      />
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="Email" 
-        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required 
-      />
-      <input 
-        type="password" 
-        name="password" 
-        placeholder="Password" 
-        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required 
-      />
-      <button 
-        type="submit" 
-        class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
-      >
-        Sign Up
-      </button>
-    </form>
-    <p class="text-gray-600 text-sm text-center mt-4">
-      Already have an account? <a href="/auth/login" class="text-blue-600 hover:underline">Log In</a>
-    </p>
+<body class="bg-gradient-to-r from-purple-300 to-blue-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl flex flex-col lg:flex-row">
+    <!-- Left Section: Welcome Message -->
+    <div class="w-full lg:w-1/2 bg-gray-100 p-8 flex flex-col justify-center">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Join Our Community</h2>
+      <p class="text-gray-600 mb-6">
+        Create your account and start exploring our resources for learners and educators. Expand your knowledge today!
+      </p>
+      <ul class="space-y-4 text-gray-700">
+        <li class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.105 0 2 .672 2 1.5S13.105 11 12 11s-2-.672-2-1.5S10.895 8 12 8zm0 3c2.485 0 4.5 1.79 4.5 4s-2.015 4-4.5 4-4.5-1.79-4.5-4 2.015-4 4.5-4z" />
+          </svg>
+          Access courses and materials
+        </li>
+        <li class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Collaborate with fellow learners
+        </li>
+        <li class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17.01l-4-4-4 4m8 0a9 9 0 11-16 0 9 9 0 0116 0z" />
+          </svg>
+          Track your progress and achievements
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Section: Register Form -->
+    <div class="w-full lg:w-1/2 bg-white p-8 flex flex-col justify-center">
+      <div class="text-center mb-6">
+        <img src="/uploads/logo.png" alt="Logo" class="h-12 mx-auto">
+      </div>
+      <h2 class="text-3xl font-bold text-gray-800 text-center mb-4">Create Your Account</h2>
+      <form action="/auth/register" method="POST" class="space-y-4">
+        <!-- Username Field -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 01-8 0 4 4 0 018 0zM12 16a8 8 0 100-8 8 8 0 000 8z" />
+            </svg>
+          </span>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            required
+            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500"
+          />
+        </div>
+
+        <!-- Email Field -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 01-8 0 4 4 0 018 0zM12 16a8 8 0 100-8 8 8 0 000 8z" />
+            </svg>
+          </span>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v2a3 3 0 006 0v-2a3 3 0 00-3-3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v4m0 4v4" />
+            </svg>
+          </span>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Already have an account? 
+        <a href="/auth/login" class="text-indigo-600 hover:underline">Log In</a>
+      </p>
+    </div>
   </div>
 </body>
 </html>
