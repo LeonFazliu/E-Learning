@@ -6,37 +6,86 @@
   <title>Login | E-Learning Platform</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-sm w-full">
-    <div class="text-5xl text-center mb-4">📚</div>
-    <h2 class="text-2xl font-bold text-center mb-2">Welcome Back</h2>
-    <p class="text-gray-600 text-center mb-6">Log in to continue learning and sharing your knowledge.</p>
-    <form id="loginForm" class="space-y-4">
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="Email" 
-        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        required 
-      />
-      <input 
-        type="password" 
-        name="password" 
-        placeholder="Password" 
-        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        required 
-      />
-      <button 
-        type="submit" 
-        class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition duration-200"
-      >
-        Log In
-      </button>
-    </form>
-    <p class="text-gray-600 text-sm text-center mt-4">
-      Don't have an account? <a href="/auth/register" class="text-indigo-600 hover:underline">Sign Up</a>
-    </p>
-    <p id="error-message" class="text-red-500 text-center mt-2"></p>
+<body class="min-h-screen bg-gray-100">
+  <div class="flex flex-col lg:flex-row h-screen">
+    <!-- Left Section: Illustration -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center bg-white p-6">
+      <img src="/uploads/image1.jpg" alt="Illustration" class="max-w-md transform scale-110">
+    </div>
+
+    <!-- Right Section: Login Form -->
+    <div class="w-full lg:w-1/2 bg-white flex flex-col justify-center px-8 lg:px-16">
+      <!-- Logo -->
+      <div class="flex justify-center mb-6">
+        <img src="/uploads/logo.png" alt="Logo" class="h-12">
+      </div>
+
+      <!-- Welcome Text -->
+      <h2 class="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4">Welcome Back</h2>
+      <p class="text-gray-600 text-center mb-6">Log in to continue learning and sharing your knowledge.</p>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="space-y-6 mx-auto w-full max-w-md">
+        <!-- Email Field -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 01-8 0 4 4 0 018 0zM12 16a8 8 0 100-8 8 8 0 000 8z" />
+            </svg>
+          </span>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500 text-base"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c-1.657 0-3 1.343-3 3v2a3 3 0 006 0v-2a3 3 0 00-3-3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v4m0 4v4" />
+            </svg>
+          </span>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-500 text-base"
+          />
+        </div>
+
+        <!-- Remember Me and Forgot Password
+        <div class="flex items-center justify-between">
+          <label class="flex items-center">
+            <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+          </label>
+          <a href="#" class="text-sm text-indigo-600 hover:underline">Forgot Password?</a>
+        </div> -->
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base"
+          >
+            Log In
+          </button>
+        </div>
+      </form>
+
+      <!-- Sign Up Link -->
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Don't have an account? 
+        <a href="/auth/register" class="text-indigo-600 hover:underline">Sign Up</a>
+      </p>
+      <p id="error-message" class="text-red-500 text-center mt-2"></p>
+    </div>
   </div>
 
   <script>
@@ -61,11 +110,7 @@
         }
   
         const data = await response.json();
-  
-        // Log user data to the console
         console.log('User Data:', data.user);
-  
-        // Redirect to the home page or dashboard
         window.location.href = '/';
       } catch (error) {
         console.error('Error:', error);
