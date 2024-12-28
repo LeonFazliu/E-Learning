@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> <!-- Include Tailwind CSS -->
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
 <body class="bg-gray-100">
     <%- include('../partials/navbar') %>
     <div class="flex">
-        <!-- Sidebar -->
         <aside class="w-64 bg-white shadow-lg">
             <div class="p-6">
                 <h2 class="text-2xl font-semibold text-gray-800">Teacher Menu</h2>
@@ -27,7 +25,6 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="flex-1 p-6">
             <h1 class="text-3xl font-bold text-gray-800">Teacher Dashboard</h1>
             <h2 class="mt-4 text-xl font-semibold text-gray-700">Your Published Courses</h2>
@@ -61,7 +58,6 @@
         </main>
     </div>
 
-    <!-- Modal -->
     <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white w-96 p-6 rounded-lg shadow-lg">
             <h2 class="text-xl font-bold text-gray-800 mb-4">Confirm Deletion</h2>
@@ -86,7 +82,6 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
         function openModal(courseId) {
             const modal = document.getElementById('deleteModal');
