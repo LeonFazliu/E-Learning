@@ -1,22 +1,22 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <%- include('partials/navbar') %>
-<section class="py-8 bg-gray-100">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Courses</h2>
-    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+<section class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Explore Our Courses</h2>
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       <% courses.forEach(course => { %>
-        <div class="bg-white shadow rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+        <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
           <div class="relative h-48 w-full">
-            <img src="<%= course.imageUrl %>" alt="<%= course.name %>" class="absolute inset-0 w-full h-full object-cover">
+            <img src="<%= course.imageUrl %>" alt="<%= course.name %>" class="absolute inset-0 w-full h-full object-cover rounded-t-xl">
           </div>
-          <div class="p-4">
-            <h3 class="text-lg font-semibold text-gray-800 mb-1"><%= course.name %></h3>
-            <p class="text-sm text-gray-600 mb-2 line-clamp-2"><%= course.description %></p>
-            <p class="text-sm text-gray-800 mb-1">Instructor: <strong><%= course.instructor %></strong></p>
-            <p class="text-sm text-gray-800 mb-1">Duration: <strong><%= course.duration %></strong></p>
-            <p class="text-sm text-gray-800 mb-3">Rating: <strong><%= course.rating ? course.rating.toFixed(1) : 'N/A' %></strong></p>
-            <a href="/courses/<%= course.id %>" class="inline-block bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition duration-200 text-sm">Enroll Now</a>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2"><%= course.name %></h3>
+            <p class="text-sm text-gray-600 mb-4 line-clamp-2"><%= course.description %></p>
+            <p class="text-sm text-gray-800"><strong>Instructor:</strong> <%= course.instructor %></p>
+            <p class="text-sm text-gray-800"><strong>Duration:</strong> <%= course.duration %></p>
+            <p class="text-sm text-gray-800 mb-4"><strong>Rating:</strong> <%= course.rating ? course.rating.toFixed(1) : 'N/A' %></p>
+            <a href="/courses/<%= course.id %>" class="block w-full text-center bg-purple-300 text-white py-2 rounded-md hover:bg-purple-700 transition duration-200">Enroll Now</a>
           </div>
         </div>
       <% }); %>

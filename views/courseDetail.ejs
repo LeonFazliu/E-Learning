@@ -8,11 +8,11 @@
   <style>
     .video-responsive {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
+      padding-bottom: 56.25%; 
       height: 0;
       overflow: hidden;
     }
-    
+
     .video-responsive iframe {
       position: absolute;
       top: 0;
@@ -22,37 +22,50 @@
     }
   </style>
 </head>
-<body class="bg-gray-100 min-h-screen font-sans">
+<body class="min-h-screen font-sans">
   <%- include('partials/navbar') %>
-  <div class="max-w-5xl mx-auto p-6 bg-white shadow rounded-lg mt-6">
+  <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <h1 class="text-2xl font-bold text-gray-900 mb-4 text-center"><%= course.name %></h1>
+    
     <div class="video-responsive mb-6">
       <% if (course.videoUrl && course.videoUrl.trim() !== '') { %>
         <iframe 
           src="<%= course.videoUrl.includes('youtube.com') ? course.videoUrl.replace('watch?v=', 'embed/').split('&')[0] : course.videoUrl %>" 
           title="<%= course.name %> Video" 
           frameborder="0" 
-          class="rounded"
+          class="rounded-lg shadow"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
         </iframe>
       <% } else { %>
-        <p class="text-center text-gray-500">Video not available for this course.</p>
+        <div class="text-center p-4 bg-gray-100 rounded-lg">
+          <p class="text-gray-500 text-sm">Video not available for this course.</p>
+        </div>
       <% } %>
     </div>
 
     <div class="course-info mb-6">
-      <p class="text-lg"><strong class="text-gray-800">Instructor:</strong> <span class="text-gray-600"><%= course.instructor %></span></p>
-      <p class="text-lg mt-2"><strong class="text-gray-800">Description:</strong> <span class="text-gray-600"><%= course.description %></span></p>
-      <p class="text-lg mt-2"><strong class="text-gray-800">Duration:</strong> <span class="text-gray-600"><%= course.duration %></span></p>
-      <p class="text-lg mt-2"><strong class="text-gray-800">Rating:</strong> <span class="text-gray-600"><%= course.rating || 'Not rated yet' %></span></p>
+      <p class="text-base"><strong class="text-gray-800">Instructor:</strong> <span class="text-gray-600"><%= course.instructor %></span></p>
+      <p class="text-base mt-3"><strong class="text-gray-800">Description:</strong> <span class="text-gray-600"><%= course.description %></span></p>
+      <p class="text-base mt-3"><strong class="text-gray-800">Duration:</strong> <span class="text-gray-600"><%= course.duration %></span></p>
+      <p class="text-base mt-3"><strong class="text-gray-800">Rating:</strong> <span class="text-gray-600"><%= course.rating || 'Not rated yet' %></span></p>
     </div>
-    <% if (isSaved) { %>
-        <form action="/courses/<%= course.id %>/remove" method="POST" class="text-center">
-          <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200">Remove Course</button>
+
+    <div class="text-center">
+      <% if (isSaved) { %>
+        <form action="/courses/<%= course.id %>/remove" method="POST">
+          <button type="submit" class="w-full sm:w-auto bg-red-500 text-white py-2 px-5 rounded-md font-medium hover:bg-red-600 transition duration-200 shadow">
+            Remove Course
+          </button>
         </form>
       <% } else { %>
-        <form action="/courses/<%= course.id %>/save" method="POST" class="text-center">
-          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">Save Course</button>
+        <form action="/courses/<%= course.id %>/save" method="POST">
+          <button type="submit" class="w-full sm:w-auto bg-purple-300 text-white py-2 px-5 rounded-md font-medium hover:bg-purple-600 transition duration-200 shadow">
+            Save Course
+          </button>
         </form>
       <% } %>
     </div>
+  </div>
+</body>
+</html>

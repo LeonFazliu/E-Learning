@@ -8,25 +8,19 @@
 </head>
 <body class="min-h-screen bg-gray-100">
   <div class="flex flex-col lg:flex-row h-screen">
-    <!-- Left Section: Illustration -->
     <div class="w-full lg:w-1/2 flex items-center justify-center bg-white p-6">
       <img src="/uploads/image1.jpg" alt="Illustration" class="max-w-md transform scale-110">
     </div>
 
-    <!-- Right Section: Login Form -->
     <div class="w-full lg:w-1/2 bg-white flex flex-col justify-center px-8 lg:px-16">
-      <!-- Logo -->
       <div class="flex justify-center mb-6">
         <img src="/uploads/logo.png" alt="Logo" class="h-12">
       </div>
 
-      <!-- Welcome Text -->
       <h2 class="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4">Welcome Back</h2>
       <p class="text-gray-600 text-center mb-6">Log in to continue learning and sharing your knowledge.</p>
 
-      <!-- Login Form -->
       <form id="loginForm" class="space-y-6 mx-auto w-full max-w-md">
-        <!-- Email Field -->
         <div class="relative">
           <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +36,6 @@
           />
         </div>
 
-        <!-- Password Field -->
         <div class="relative">
           <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,16 +52,7 @@
           />
         </div>
 
-        <!-- Remember Me and Forgot Password
-        <div class="flex items-center justify-between">
-          <label class="flex items-center">
-            <input type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-            <span class="ml-2 text-sm text-gray-600">Remember me</span>
-          </label>
-          <a href="#" class="text-sm text-indigo-600 hover:underline">Forgot Password?</a>
-        </div> -->
-
-        <!-- Submit Button -->
+      
         <div>
           <button
             type="submit"
@@ -79,7 +63,6 @@
         </div>
       </form>
 
-      <!-- Sign Up Link -->
       <p class="text-center text-sm text-gray-600 mt-4">
         Don't have an account? 
         <a href="/auth/register" class="text-indigo-600 hover:underline">Sign Up</a>
