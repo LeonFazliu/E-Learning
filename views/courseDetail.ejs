@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a New Course</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= course.name %> - Course Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .video-responsive {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .video-responsive iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <%- include('partials/navbar') %>
-
-    <div class="max-w-4xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Create a New Course</h1>
-        <form action="/create-course" method="POST" enctype="multipart/form-data" class="space-y-6">
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Course Name</label>
-                <input type="text" id="name" name="name" required placeholder="Enter course name"
-                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
-            </div>
-
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                <textarea id="description" name="description" required placeholder="Enter course description"
-                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400"></textarea>
-            </div>
-
-            <div>
-                <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
-                <input type="file" id="image" name="image" accept="image/*" required
-                    class="mt-1 block w-full text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
-            </div>
-
-            <div>
-                <label for="instructor" class="block text-sm font-medium text-gray-700">Instructor Name</label>
-                <input type="text" id="instructor" name="instructor" required placeholder="Enter instructor name"
-                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
-            </div>
-
-            <div>
-                <label for="duration" class="block text-sm font-medium text-gray-700">Duration</label>
-                <input type="text" id="duration" name="duration" required placeholder="e.g., 1 hour 30 minutes"
-                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
-            </div>
-
-            <div>
-                <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
-                <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" placeholder="Rate out of 5"
-                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
-            </div>
-
-            <div>
-                <label for="videoUrl" class="block text-sm font-medium text-gray-700">Video URL</label>
-                <input type="url" id="videoUrl" name="videoUrl" required placeholder="https://youtube.com/..."
-                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-400 focus:border-blue-400">
-            </div>
-
-            <button type="submit" 
-                class="w-full bg-purple-400 text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition duration-200">
-                Create Course
-            </button>
-        </form>
+<body class="bg-gray-100 min-h-screen font-sans">
+  <%- include('partials/navbar') %>
+  <div class="max-w-5xl mx-auto p-6 bg-white shadow rounded-lg mt-6">
+    <div class="video-responsive mb-6">
+      <% if (course.videoUrl && course.videoUrl.trim() !== '') { %>
+        <iframe 
+          src="<%= course.videoUrl.includes('youtube.com') ? course.videoUrl.replace('watch?v=', 'embed/').split('&')[0] : course.videoUrl %>" 
+          title="<%= course.name %> Video" 
+          frameborder="0" 
+          class="rounded"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      <% } else { %>
+        <p class="text-center text-gray-500">Video not available for this course.</p>
+      <% } %>
     </div>
-</body>
-</html>
+
+    <div class="course-info mb-6">
+      <p class="text-lg"><strong class="text-gray-800">Instructor:</strong> <span class="text-gray-600"><%= course.instructor %></span></p>
+      <p class="text-lg mt-2"><strong class="text-gray-800">Description:</strong> <span class="text-gray-600"><%= course.description %></span></p>
+      <p class="text-lg mt-2"><strong class="text-gray-800">Duration:</strong> <span class="text-gray-600"><%= course.duration %></span></p>
+      <p class="text-lg mt-2"><strong class="text-gray-800">Rating:</strong> <span class="text-gray-600"><%= course.rating || 'Not rated yet' %></span></p>
+    </div>
+    <% if (isSaved) { %>
+        <form action="/courses/<%= course.id %>/remove" method="POST" class="text-center">
+          <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200">Remove Course</button>
+        </form>
+      <% } else { %>
+        <form action="/courses/<%= course.id %>/save" method="POST" class="text-center">
+          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">Save Course</button>
+        </form>
+      <% } %>
+    </div>
